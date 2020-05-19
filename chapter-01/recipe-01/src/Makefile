@@ -13,7 +13,7 @@ all: $(PROGS)
 	@echo "PROGS = $(PROGS)" 
 
 clean:
-	$(RM) $(PROGS)
+	$(RM) $(PROGS) *.dot *.png
 
 %: %.cpp
 	$(CXX) -o $@ $(CXXFLAGS) $(INCLUDES) $^ $(LDFLAGS) $(LDPATH)

@@ -1,4 +1,4 @@
-/** \example sample_unweight_dense_graph.cpp
+/** \example sample_unweight_dense_graph1.cpp
  * This is an example of how to use the unweight::dense_graph class.
  */
 #include <vector>
