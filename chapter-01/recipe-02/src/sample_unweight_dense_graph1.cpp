@@ -26,7 +26,7 @@ int main()
     cout << graph->edge_count() << " edges in graph" << endl;
 
     // show adjLists
-    cout << "-----------------show adjLists of Graph--------------------\n"
+    cout << "graph after insert edges:\n"
         << *graph
         << endl;
 
@@ -38,7 +38,7 @@ int main()
     cout << graph->edge_count() << " edges in graph" << endl;
 
     // show adjLists
-    cout << "-----------------show adjLists of Graph--------------------\n"
+    cout << "graph after remove edges:\n"
         << *graph
         << endl;
 

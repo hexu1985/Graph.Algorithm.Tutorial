@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
     // show edges
     cout << graph->edge_count() << " edges in graph" << endl;
 
-    cout << "-----------------graph to dot--------------------\n"
+    cout << "graph to dot format:\n"
         << to_dot(*graph)
         << endl;
 
