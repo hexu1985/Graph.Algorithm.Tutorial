@@ -26,7 +26,7 @@ inline
 std::ostream &operator <<(std::ostream &strm, const dense_graph &graph)
 {
     for (int v = 0; v < graph.vertex_count(); v++) {
-        strm << std::setw(2) << v << ":";
+        strm << std::setw(2) << v << ": ";
         for (auto w: graph.get_adj_list(v)) {
             strm << std::setw(2) << w << " ";
         }
