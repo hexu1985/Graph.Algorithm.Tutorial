@@ -20,24 +20,6 @@ namespace unweight {
  * @brief 一个稠密图实现, 基于邻接矩阵(不支持平行边)
  */
 class dense_graph { 
-private:
-	std::vector<std::vector<bool>> adj_mat_;  // 邻接矩阵
-	int v_cnt_ = 0;                           // 顶点数
-    int e_cnt_ = 0;                           // 边数
-	bool directed_ = false;                   // 是否为有向图
-
-    /**
-     * @brief 初始化邻接矩阵
-     *
-     * @param v_cnt 边个数
-     */
-    void init_adj_mat()
-    {
-        adj_mat_.resize(v_cnt_);
-		for (int i = 0; i < v_cnt_; i++) 
-			adj_mat_[i].assign(v_cnt_, false);
-    }
-
 public:
     /**
      * @brief 边类型
@@ -55,6 +37,24 @@ public:
     static edge_type make_edge(int u, int v) 
     {
         return std::make_tuple(u, v);
+    }
+
+private:
+	std::vector<std::vector<bool>> adj_mat_;  // 邻接矩阵
+	int v_cnt_ = 0;                           // 顶点数
+    int e_cnt_ = 0;                           // 边数
+	bool directed_ = false;                   // 是否为有向图
+
+    /**
+     * @brief 初始化邻接矩阵
+     *
+     * @param v_cnt 边个数
+     */
+    void init_adj_mat()
+    {
+        adj_mat_.resize(v_cnt_);
+		for (int i = 0; i < v_cnt_; i++) 
+			adj_mat_[i].assign(v_cnt_, false);
     }
 
 public:
