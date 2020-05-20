@@ -8,6 +8,7 @@
 #ifndef UNWEIGHT_SPARSE_MULTI_GRAPH_IO_INC
 #define UNWEIGHT_SPARSE_MULTI_GRAPH_IO_INC
 
+#include <cmath>
 #include <iostream>
 #include <iomanip>
 #include "unweight_sparse_multi_graph.hpp"
@@ -25,10 +26,13 @@ namespace unweight {
 inline
 std::ostream &operator <<(std::ostream &strm, const sparse_multi_graph &graph)
 {
-    for (int v = 0; v < graph.vertex_count(); v++) {
-        strm << std::setw(2) << v << ": ";
+    int width = static_cast<int>(log10(graph.vertex_count()))+1;
+    for (auto v: get_vertexes(graph)) {
+        strm << std::setw(width) << v << ":";
+        bool first = true;
         for (auto w: graph.get_adj_list(v)) {
-            strm << std::setw(2) << w << " ";
+            strm << (first ? " " : ", ") << w;
+            first = false;
         }
         strm << std::endl;
     }

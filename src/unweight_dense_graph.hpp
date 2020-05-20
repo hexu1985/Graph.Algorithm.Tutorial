@@ -135,7 +135,7 @@ public:
      * @brief 可以遍历指定顶点的所有邻接节点的迭代器
      */
     struct adj_iterator: public std::iterator<std::forward_iterator_tag, int> {
-        const std::vector<bool> *array_ = 0;
+        const std::vector<bool> *array_ = nullptr;
         int v_ = -1;
 
         adj_iterator(const std::vector<bool> *array): array_(array)
@@ -199,7 +199,7 @@ public:
     };
 
     /**
-     * @brief 获取指定顶点的邻接顶点的迭代器
+     * @brief 获取指定顶点的邻接顶点的列表
      *
      * @param v 指定顶点
      *
