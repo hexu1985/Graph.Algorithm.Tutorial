@@ -12,6 +12,7 @@
 #include <iostream>
 #include <iomanip>
 #include "unweight_dense_graph.hpp"
+#include "unweight_dense_graph_utils.hpp"
 
 namespace unweight {
 

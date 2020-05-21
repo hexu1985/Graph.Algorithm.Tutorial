@@ -1,6 +1,6 @@
 /**
  * @file unweight_sparse_multi_graph_io.hpp
- * @brief 稠密图的输入输出运算符重载
+ * @brief 稀疏图的输入输出运算符重载
  * @author hexu_1985@sina.com
  * @version 1.0
  * @date 2020-05-19
@@ -12,14 +12,15 @@
 #include <iostream>
 #include <iomanip>
 #include "unweight_sparse_multi_graph.hpp"
+#include "unweight_sparse_multi_graph_utils.hpp"
 
 namespace unweight {
 
 /**
- * @brief 稠密图的输出运算符重载
+ * @brief 稀疏图的输出运算符重载
  *
  * @param strm 输出流
- * @param graph 稠密图
+ * @param graph 稀疏图
  *
  * @return 输出流
  */
