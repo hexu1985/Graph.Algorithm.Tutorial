@@ -30,8 +30,10 @@ std::ostream &operator <<(std::ostream &strm, const dense_graph &graph)
     int width = static_cast<int>(log10(graph.vertex_count()))+1;
     for (auto v: get_vertexes(graph)) {
         strm << std::setw(width) << v << ": ";
+        bool first = true;
         for (auto e: graph.get_adj_list(v)) {
-            strm << e->other(v) << "(" << e->weight() << "), ";
+            strm << (first ? " " : ", ") << e->other(v) << "(" << e->weight() << ")";
+            first = false;
         }
         strm << std::endl;
     }

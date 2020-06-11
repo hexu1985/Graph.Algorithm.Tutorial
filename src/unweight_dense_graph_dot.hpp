@@ -53,4 +53,4 @@ std::string to_dot(const dense_graph &graph)
 
 }   // namespace unweight
 
-#endif  // UNWEIGHT_DENSE_GRAPH_IO_INC
+#endif  // UNWEIGHT_DENSE_GRAPH_DOT_INC

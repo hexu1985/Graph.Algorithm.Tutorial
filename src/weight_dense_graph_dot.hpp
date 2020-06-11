@@ -1,28 +1,28 @@
 /**
- * @file unweight_sparse_multi_graph_dot.hpp
- * @brief 将稀疏图转成dot格式
+ * @file weight_dense_graph_dot.hpp
+ * @brief 将稠密图转成dot格式
  * @author hexu_1985@sina.com
  * @version 1.0
  * @date 2020-05-19
  */
-#ifndef UNWEIGHT_SPARSE_MULTI_GRAPH_DOT_INC
-#define UNWEIGHT_SPARSE_MULTI_GRAPH_DOT_INC
+#ifndef WEIGHT_DENSE_GRAPH_DOT_INC
+#define WEIGHT_DENSE_GRAPH_DOT_INC
 
 #include <iostream>
 #include <string>
 #include <sstream>
-#include "unweight_sparse_multi_graph.hpp"
-#include "unweight_sparse_multi_graph_utils.hpp"
+#include "weight_dense_graph.hpp"
+#include "weight_dense_graph_utils.hpp"
 
-namespace unweight {
+namespace weight {
 
 /**
- * @brief 将稀疏图转成DOT语言格式
+ * @brief 将稠密图转成DOT语言格式
  *
  * @param strm 输出流
  * @param graph 指定图
  */
-void write_dot(std::ostream &strm, const sparse_multi_graph &graph) 
+void write_dot(std::ostream &strm, const dense_graph &graph) 
 {
     bool is_digraph = graph.is_directed();
     std::string title = is_digraph ? "digraph G" : "graph G";
@@ -37,20 +37,23 @@ void write_dot(std::ostream &strm, const sparse_multi_graph &graph)
 
     // 打印边集
     for (auto e: get_edges(graph)) {
-        auto [u, v] = e;
-        strm << "\t" << u << line_symbol << v << ";\n";
+        auto [u, v] = e->get_vertexes();
+        strm << "\t" 
+            << u << line_symbol << v 
+            << " [label=\"" << e->weight() << "\"]"
+            << ";\n";
     }
 
     strm << "}\n";
 }
 
-std::string to_dot(const sparse_multi_graph &graph)
+std::string to_dot(const dense_graph &graph)
 {
     std::ostringstream os;
     write_dot(os, graph);
     return os.str();
 }
 
-}   // namespace unweight
+}   // namespace weight
 
-#endif  // UNWEIGHT_SPARSE_MULTI_GRAPH_DOT_INC
+#endif  // WEIGHT_DENSE_GRAPH_DOT_INC
