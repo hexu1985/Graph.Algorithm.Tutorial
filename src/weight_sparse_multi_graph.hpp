@@ -11,6 +11,7 @@
 #define WEIGHT_SPARSE_MUTLI_GRAPH_INC
 
 #include <vector>
+#include <memory>
 #include <forward_list>
 #include <algorithm>
 
