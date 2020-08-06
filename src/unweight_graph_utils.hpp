@@ -34,6 +34,46 @@ std::shared_ptr<Graph> make_graph(int v_cnt, const std::vector<typename Graph::e
     return graph;
 }
 
+/**
+ * @brief 获取指定图的点集
+ *
+ * @param graph 指定图
+ *
+ * @return 点集
+ */
+template <typename Graph>
+std::vector<int> get_vertexes(const Graph &graph)
+{
+    std::vector<int> vertexes;
+    int n = graph.vertex_count();
+    for (int i = 0; i < n; i++) {
+        vertexes.push_back(i);
+    }
+    return vertexes;
+}
+
+/**
+ * @brief 获取指定图的边集
+ *
+ * @param graph 指定图
+ *
+ * @return 边集
+ */
+template <typename Graph>
+std::vector<typename Graph::edge_type> get_edges(const Graph &graph)
+{
+    std::vector<typename Graph::edge_type> edges;
+    for (auto v: get_vertexes(graph)) {
+        for (auto w: graph.get_adj_list(v)) {
+            if (graph.is_directed() || v < w) {
+                edges.push_back(Graph::make_edge(v, w));
+            }
+        }
+    }
+
+    return edges;
+}
+
 }   // namespace unweight
 
 #endif  // UNWEIGHT_DENSE_GRAPH_UTILS_INC
