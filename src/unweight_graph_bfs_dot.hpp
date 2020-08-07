@@ -121,7 +121,8 @@ private:
             if (visit_order_.find(e) != visit_order_.end()) {
                 strm << "["
                     << " label=\" #" << visit_order_[e] << "\"" 
-                    << ", color=red, penwidth=3.0"
+                    << ", color=" << color_list[dist_[v]%color_list.size()]
+                    << ", penwidth=3.0"
                     << " ]";
             }
             strm << ";\n";
