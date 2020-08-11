@@ -10,6 +10,10 @@
 - [权重图的邻接矩阵表示](chapter-01/recipe-04/README.md)
 - [权重图的邻接链表表示](chapter-01/recipe-05/README.md)
 
+### [Chapter2: 图的搜索及其应用](chapter-02/README.md)
+
+- [图的宽度优先搜索算法](chapter-02/recipe-01/README.md)
+- [无向图的连通分量算法](chapter-02/recipe-02/README.md)
 
 ### API文档：
 
