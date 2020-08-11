@@ -66,8 +66,8 @@ private:
 
         for (int v = 0; v < graph_.vertex_count(); v++) {
             if (!visited_[v]) {
-                search(v);
                 num_cc_++;
+                search(v);
             }
         }
     }
@@ -75,7 +75,6 @@ private:
     void search(int s)
     {
         visited_[s] = true;
-        cc_[s] = num_cc_;
 
         // Q := 一个队列数据结构，用s进行初始化
         std::queue<int> Q;
@@ -85,6 +84,7 @@ private:
         while (!Q.empty()) {
             // 从Q的头部删除一个顶点，称之为v
             auto v = Q.front(); Q.pop();
+            cc_[v] = num_cc_;
 
             // 遍历v的邻接列表
             for (auto w: graph_.get_adj_list(v)) {
@@ -92,7 +92,6 @@ private:
                     // 如果w为未探索，把w标记为已探索，并且把w添加到Q的尾部
                     visited_[w] = true;
                     visit_order_[edge_type(v,w)] = ++visit_count_;
-                    cc_[w] = num_cc_;
                     Q.push(w);
                 }
             }

@@ -1,6 +1,6 @@
 /**
  * @file unweight_graph_bfs_dot.hpp
- * @brief 宽度优先的搜索(Breadth-first Search, BFS)
+ * @brief 宽度优先的搜索(Breadth-first Search, BFS)算法
  * @author hexu_1985@sina.com
  * @version 1.0
  * @date 2020-08-06
@@ -18,7 +18,7 @@
 namespace unweight {
 
 /**
- * @brief 宽度优先的搜索(Breadth-first Search, BFS)
+ * @brief 宽度优先的搜索(Breadth-first Search, BFS)算法
  *
  * @tparam Graph 图类型
  */
