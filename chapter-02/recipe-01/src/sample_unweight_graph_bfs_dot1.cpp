@@ -1,4 +1,4 @@
-/** \example sample_unweight_graph_bfs1.cpp
+/** \example sample_unweight_graph_bfs_dot1.cpp
  * This is an example of how to use the unweight::BFS class.
  */
 
