@@ -44,13 +44,15 @@ public:
         while (!S.empty()) {
             // 从S的头部删除("弹出")顶点v
             auto v = S.top(); S.pop();
-            // 把v标注为已探索
-            visited_[v] = true;
 
-            // 遍历v的邻接列表
-            for (auto w: graph_.get_adj_list(v)) {
-                if (!visited_[w]) {
-                    // 如果w为未探索，并且把w添加到S的头部
+            // 如果v为未探索
+            if (!visited_[v]) {
+                // 把v标注为已探索
+                visited_[v] = true;
+
+                // 遍历v的邻接列表
+                for (auto w: graph_.get_adj_list(v)) {
+                    // 把w添加("压入")到S的头部
                     S.push(w);
                 }
             }
