@@ -36,7 +36,7 @@ public:
         visited_.resize(graph_.vertex_count());
         std::fill(std::begin(visited_), std::end(visited_), false);
 
-        // Q := 一个堆栈数据结构，用s初始化
+        // S := 一个堆栈数据结构，用s初始化
         std::stack<int> S;
         S.push(s);
 

@@ -11,7 +11,7 @@
 #include <vector>
 #include <queue>
 #include <algorithm>
-#include <map>
+#include <set>
 #include <iostream>
 #include <fstream>
 
@@ -29,8 +29,9 @@ private:
     std::vector<bool> visited_;
     int visit_count_ = 0;       // 访问顺序计数
     std::vector<int> dist_;
+    std::vector<int> visit_order_; 
     using edge_type = typename Graph::edge_type;
-    std::map<edge_type, int> visit_order_; 
+    std::set<edge_type> visited_edges_; 
 
 public:
     BFS(const Graph &graph): graph_(graph)
@@ -61,12 +62,14 @@ private:
 
         visit_count_ = 0;
         dist_.assign(graph_.vertex_count(), -1);
+        visit_order_.assign(graph_.vertex_count(), -1);
 
         // Q := 一个队列数据结构，用s进行初始化
         std::queue<int> Q;
         Q.push(s);
 
         dist_[s] = 0;
+        visit_order_[s] = 0;
 
         // 只要队列不为空，就一直处理
         while (!Q.empty()) {
@@ -78,8 +81,9 @@ private:
                 if (!visited_[w]) {
                     // 如果w为未探索，把w标记为已探索，并且把w添加到Q的尾部
                     visited_[w] = true;
-                    visit_order_[edge_type(v,w)] = ++visit_count_;
+                    visit_order_[w] = ++visit_count_;
                     dist_[w] = dist_[v]+1;
+                    visited_edges_.insert(edge_type(v,w));
                     Q.push(w);
                 }
             }
@@ -102,6 +106,7 @@ private:
             strm << "\t" << vmap[v];
             if (dist_[v] >= 0) {
                 strm << "["
+                    << " label=\"" << vmap[v] << " (#" << visit_order_[v] << ")\", "
                     << " color=";
                 if (s == v) {
                     strm << "yellow";
@@ -110,6 +115,9 @@ private:
                 }
                 strm << ", style=filled"
                     << "]";
+            } else {
+                strm << "["
+                    << " label=\"" << vmap[v] << "\"]";
             }
             strm << ";\n";
         }
@@ -118,10 +126,10 @@ private:
         for (auto e: get_edges(graph_)) {
             auto [u, v] = e;
             strm << "\t" << vmap[u] << line_symbol << vmap[v];
-            if (visit_order_.find(e) != visit_order_.end()) {
+            if (visited_edges_.find(e) != visited_edges_.end() ||
+                (!is_digraph && visited_edges_.find(edge_type(v,u)) != visited_edges_.end())) {
                 strm << "["
-                    << " label=\" #" << visit_order_[e] << "\"" 
-                    << ", color=" << color_list[dist_[v]%color_list.size()]
+                    << "color=red" 
                     << ", penwidth=3.0"
                     << " ]";
             }

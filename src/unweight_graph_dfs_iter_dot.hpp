@@ -61,7 +61,7 @@ private:
         visit_count_ = 0;
         visit_order_.assign(graph_.vertex_count(), -1);
 
-        // Q := 一个堆栈数据结构，用s初始化
+        // S := 一个堆栈数据结构，用s初始化
         std::stack<edge_type> S;
         S.push(edge_type(s,s));
 
