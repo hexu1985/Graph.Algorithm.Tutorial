@@ -101,7 +101,7 @@ private:
     template <typename VMap>
     void write_dot(std::ostream &strm, const VMap &vmap) 
     {
-        std::vector<std::string> color_list = {"red", "green", "blue"};
+        std::vector<std::string> color_list = {"red", "green", "cyan"};
 
         bool is_digraph = graph_.is_directed();
         std::string title = is_digraph ? "digraph G" : "graph G";
