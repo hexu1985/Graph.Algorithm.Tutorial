@@ -35,6 +35,26 @@ std::shared_ptr<Graph> make_graph(int v_cnt, const std::vector<typename Graph::e
 }
 
 /**
+ * @brief 创建有向图
+ *
+ * @tparam Graph 图的类型
+ * @param v_cnt 顶点个数
+ * @param edges 边列表
+ *
+ * @return 图的对象
+ */
+template <typename Graph>
+std::shared_ptr<Graph> make_digraph(int v_cnt, const std::vector<typename Graph::edge_type> &edges)
+{
+    auto graph = Graph::make_digraph(v_cnt);
+
+    for (auto edge: edges)
+        graph->insert(edge);
+
+    return graph;
+}
+
+/**
  * @brief 获取指定图的点集
  *
  * @param graph 指定图
