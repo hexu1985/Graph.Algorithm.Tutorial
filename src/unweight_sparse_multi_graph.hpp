@@ -42,10 +42,10 @@ public:
     }
 
 private:
-	std::vector<std::forward_list<int>> adj_lists_;  // 邻接链表数组
-	int v_cnt_ = 0;                                  // 顶点数
+    std::vector<std::forward_list<int>> adj_lists_;  // 邻接链表数组
+    int v_cnt_ = 0;                                  // 顶点数
     int e_cnt_ = 0;                                  // 边数
-	bool directed_ = false;                          // 是否为有向图
+    bool directed_ = false;                          // 是否为有向图
 
 public:
     /**
@@ -54,63 +54,63 @@ public:
      * @param v_cnt 图的顶点数
      * @param directed 是否为有向图
      */
-	sparse_multi_graph(int v_cnt, bool directed = false) :
-		adj_lists_(v_cnt), v_cnt_(v_cnt), e_cnt_(0), directed_(directed) 
-	{ 
-	}
+    sparse_multi_graph(int v_cnt, bool directed = false) :
+        adj_lists_(v_cnt), v_cnt_(v_cnt), e_cnt_(0), directed_(directed) 
+    { 
+    }
 
     /**
      * @brief 返回图的顶点数
      *
      * @return 顶点个数
      */
-	int vertex_count() const { return v_cnt_; }
+    int vertex_count() const { return v_cnt_; }
 
     /**
      * @brief 返回图的边数
      *
      * @return 边的个数
      */
-	int edge_count() const { return e_cnt_; }
+    int edge_count() const { return e_cnt_; }
 
     /**
      * @brief 是否为有向图
      *
      * @return 如果为有向图, 返回true, 否则为false
      */
-	bool is_directed() const { return directed_; }
+    bool is_directed() const { return directed_; }
 
     /**
      * @brief 向图中插入一条边
      *
      * @param e 要插入的边
      */
-	void insert(edge_type e)
-	{ 
+    void insert(edge_type e)
+    { 
         auto [u, v] = e;
-		adj_lists_[u].push_front(v);
-		if (!directed_) adj_lists_[v].push_front(u);
-		e_cnt_++;
-	} 
+        adj_lists_[u].push_front(v);
+        if (!directed_) adj_lists_[v].push_front(u);
+        e_cnt_++;
+    } 
 
     /**
      * @brief 从图中删除一条边
      *
      * @param e 要删除的边
      */
-	void remove(edge_type e)
-	{
+    void remove(edge_type e)
+    {
         auto [u, v] = e;
         int n = std::count(std::begin(adj_lists_[u]),
                     std::end(adj_lists_[u]), v);
 
         if (n == 0) return;
 
-		e_cnt_-=n;
+        e_cnt_-=n;
         adj_lists_[u].remove(v);
 
-		if (!directed_) adj_lists_[v].remove(u);
-	} 
+        if (!directed_) adj_lists_[v].remove(u);
+    } 
 
     /**
      * @brief 判断边是否属于指定图
@@ -119,12 +119,12 @@ public:
      *
      * @return 如果边属于指定图, 返回true, 否则返回false
      */
-	bool has_edge(edge_type e) const
-	{
+    bool has_edge(edge_type e) const
+    {
         auto [u, v] = e;
         return (std::find(std::begin(adj_lists_[u]),
                         std::end(adj_lists_[u]), v) != std::end(adj_lists_[u]));
-	}
+    }
 
     /**
      * @brief 获取指定顶点的邻接顶点的列表
